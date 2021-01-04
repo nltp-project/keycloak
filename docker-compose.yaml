@@ -1,0 +1,21 @@
+services:
+  keycloak19:
+    build:
+      context: .
+      dockerfile: dockerfile-development
+      args:
+        - PAT=value
+    ports:
+      - 2050:8080
+      - 9990:9990
+    environment:
+      KEYCLOAK_ADMIN: root
+      KEYCLOAK_ADMIN_PASSWORD: root
+      KC_DB_URL: jdbc:mysql://host.docker.internal:3306/keycloak
+      KC_DB_USERNAME: root
+      KC_DB_PASSWORD: root
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_PROXY: edge
+    volumes:
+      - ./themes/nltp-theme:/opt/jboss/keycloak/themes/nltp-theme
